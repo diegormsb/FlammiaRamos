@@ -7,11 +7,53 @@ package flammiaramos;
 
 public class GUI extends javax.swing.JFrame {
 
-    /**
-     * Creates new form GUI
-     */
+    public Empresa CapCom;
+    public Empresa Nintendo; 
+    int NIDevNarrativa; 
+    int NIDevNiveles; 
+    int NIDevSprites;
+    int NIDevLogica;
+    int NIDevDLCs;
+    int NIDevIntegs; 
+    int CADevNarrativa; 
+    int CADevNiveles; 
+    int CADevSprites;
+    int CADevLogica;
+    int CADevDLCs;
+    int CADevIntegs;
+    long costosNI;
+    long costosCA;
+    boolean click = true;
+    
     public GUI() {
+        this.setResizable(false);
         initComponents();
+        
+        this.guionPanel.setName("narrativa");
+        this.nivelesPanel.setName("nivel");
+        this.spritesPanel.setName("sprites");
+        this.logicPanel.setName("sistema");
+        this.DLCPanel.setName("DLC");
+        this.integPanel.setName("integradores");
+        
+        this.NIDevNarrativa = (Integer)guionesNI.getValue();
+        this.NIDevNiveles = (Integer)nivelesNI.getValue();
+        this.NIDevSprites = (Integer)spritesNI.getValue();
+        this.NIDevLogica = (Integer)logicNI.getValue();
+        this.NIDevDLCs = (Integer)NIDLC.getValue();
+        this.NIDevIntegs = (Integer)integsNI.getValue();
+        
+        this.CADevNarrativa = (Integer)guionesCA.getValue();
+        this.CADevNiveles = (Integer)nivelesCA.getValue();
+        this.CADevSprites = (Integer)spritesCA.getValue();
+        this.CADevLogica = (Integer)logicCA.getValue();
+        this.CADevDLCs = (Integer)CADLC.getValue();
+        this.CADevIntegs = (Integer)integsCA.getValue();
+        
+        this.costosNI = 0;
+        this.costosCA = 0;
+        
+        
     }
 
     /**
@@ -28,8 +70,8 @@ public class GUI extends javax.swing.JFrame {
         devNI = new javax.swing.JLabel();
         logicPanel = new javax.swing.JPanel();
         logicLbl = new javax.swing.JLabel();
-        NILogic = new javax.swing.JSpinner();
-        CALogic = new javax.swing.JSpinner();
+        logicNI = new javax.swing.JSpinner();
+        logicCA = new javax.swing.JSpinner();
         DLCPanel = new javax.swing.JPanel();
         DLC = new javax.swing.JLabel();
         NIDLC = new javax.swing.JSpinner();
@@ -132,25 +174,25 @@ public class GUI extends javax.swing.JFrame {
         logicLbl.setText("Sistemas");
         logicPanel.add(logicLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 110, 20));
 
-        NILogic.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        NILogic.setModel(new javax.swing.SpinnerNumberModel(2, 1, 9, 1));
-        NILogic.setToolTipText("");
-        NILogic.addChangeListener(new javax.swing.event.ChangeListener() {
+        logicNI.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        logicNI.setModel(new javax.swing.SpinnerNumberModel(2, 1, 9, 1));
+        logicNI.setToolTipText("");
+        logicNI.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                NILogicStateChanged(evt);
+                logicNIStateChanged(evt);
             }
         });
-        logicPanel.add(NILogic, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 40, -1));
+        logicPanel.add(logicNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 50, 20));
 
-        CALogic.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        CALogic.setModel(new javax.swing.SpinnerNumberModel(3, 1, 12, 1));
-        CALogic.setToolTipText("");
-        CALogic.addChangeListener(new javax.swing.event.ChangeListener() {
+        logicCA.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        logicCA.setModel(new javax.swing.SpinnerNumberModel(3, 1, 12, 1));
+        logicCA.setToolTipText("");
+        logicCA.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                CALogicStateChanged(evt);
+                logicCAStateChanged(evt);
             }
         });
-        logicPanel.add(CALogic, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, -1, -1));
+        logicPanel.add(logicCA, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 50, 20));
 
         devsPanel.add(logicPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, -1, -1));
 
@@ -170,7 +212,7 @@ public class GUI extends javax.swing.JFrame {
                 NIDLCStateChanged(evt);
             }
         });
-        DLCPanel.add(NIDLC, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 40, -1));
+        DLCPanel.add(NIDLC, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 50, 20));
 
         CADLC.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         CADLC.setModel(new javax.swing.SpinnerNumberModel(3, 1, 12, 1));
@@ -180,7 +222,7 @@ public class GUI extends javax.swing.JFrame {
                 CADLCStateChanged(evt);
             }
         });
-        DLCPanel.add(CADLC, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, -1, -1));
+        DLCPanel.add(CADLC, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 50, 20));
 
         devsPanel.add(DLCPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, -1, -1));
 
@@ -220,7 +262,7 @@ public class GUI extends javax.swing.JFrame {
                 integsNIStateChanged(evt);
             }
         });
-        integPanel.add(integsNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 40, -1));
+        integPanel.add(integsNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 50, 20));
 
         integsCA.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         integsCA.setModel(new javax.swing.SpinnerNumberModel(2, 1, 12, 1));
@@ -230,7 +272,7 @@ public class GUI extends javax.swing.JFrame {
                 integsCAStateChanged(evt);
             }
         });
-        integPanel.add(integsCA, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, -1, -1));
+        integPanel.add(integsCA, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 50, 20));
 
         devsPanel.add(integPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, -1, -1));
 
@@ -250,7 +292,7 @@ public class GUI extends javax.swing.JFrame {
                 spritesNIStateChanged(evt);
             }
         });
-        spritesPanel.add(spritesNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 40, -1));
+        spritesPanel.add(spritesNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 50, 20));
 
         spritesCA.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         spritesCA.setModel(new javax.swing.SpinnerNumberModel(3, 1, 12, 1));
@@ -260,7 +302,7 @@ public class GUI extends javax.swing.JFrame {
                 spritesCAStateChanged(evt);
             }
         });
-        spritesPanel.add(spritesCA, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, -1, -1));
+        spritesPanel.add(spritesCA, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 50, 20));
 
         devsPanel.add(spritesPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, -1, -1));
 
@@ -280,7 +322,7 @@ public class GUI extends javax.swing.JFrame {
                 guionesNIStateChanged(evt);
             }
         });
-        guionPanel.add(guionesNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 40, -1));
+        guionPanel.add(guionesNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 50, 20));
 
         guionesCA.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         guionesCA.setModel(new javax.swing.SpinnerNumberModel(3, 1, 12, 1));
@@ -290,7 +332,7 @@ public class GUI extends javax.swing.JFrame {
                 guionesCAStateChanged(evt);
             }
         });
-        guionPanel.add(guionesCA, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, -1, -1));
+        guionPanel.add(guionesCA, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 50, 20));
 
         devsPanel.add(guionPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1, -1));
 
@@ -310,7 +352,7 @@ public class GUI extends javax.swing.JFrame {
                 nivelesNIStateChanged(evt);
             }
         });
-        nivelesPanel.add(nivelesNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 40, -1));
+        nivelesPanel.add(nivelesNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 50, 20));
 
         nivelesCA.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         nivelesCA.setModel(new javax.swing.SpinnerNumberModel(3, 1, 12, 1));
@@ -320,7 +362,7 @@ public class GUI extends javax.swing.JFrame {
                 nivelesCAStateChanged(evt);
             }
         });
-        nivelesPanel.add(nivelesCA, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, -1, -1));
+        nivelesPanel.add(nivelesCA, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 50, 20));
 
         devsPanel.add(nivelesPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, -1, -1));
 
@@ -330,7 +372,7 @@ public class GUI extends javax.swing.JFrame {
         tituloDevs.setText("DEVELOPERS");
         devsPanel.add(tituloDevs, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 20));
 
-        getContentPane().add(devsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 210, 250));
+        getContentPane().add(devsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 210, 250));
 
         disponibilidadPanel.setOpaque(false);
         disponibilidadPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -588,54 +630,157 @@ public class GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void NILogicStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_NILogicStateChanged
+    private void logicNIStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_logicNIStateChanged
+        if (this.click){
+            if (sumar(guionesNI, nivelesNI, spritesNI, logicNI, NIDLC, integsNI)){
+                down(logicNI, guionesNI, nivelesNI, spritesNI, logicNI, NIDLC, integsNI);
+            } else {
+                up(logicNI, guionesNI, nivelesNI, spritesNI, logicNI, NIDLC, integsNI);
+            }
+            int s = (Integer)guionesNI.getValue() + (Integer)nivelesNI.getValue() + (Integer)spritesNI.getValue() + (Integer)logicNI.getValue() + (Integer)NIDLC.getValue() + (Integer)integsNI.getValue();
+            devQtyNI.setText(Integer.toString(s));
+        }
+    }//GEN-LAST:event_logicNIStateChanged
 
-    }//GEN-LAST:event_NILogicStateChanged
-
-    private void CALogicStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_CALogicStateChanged
-
-    }//GEN-LAST:event_CALogicStateChanged
+    private void logicCAStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_logicCAStateChanged
+        if (this.click){
+            if (sumar(guionesCA, nivelesCA, spritesCA, logicCA, CADLC, integsCA)){
+                down(logicCA, guionesCA, nivelesCA, spritesCA, logicCA, CADLC, integsCA);
+            } else {
+                up(logicCA, guionesCA, nivelesCA, spritesCA, logicCA, CADLC, integsCA);
+            }
+            int s = (Integer)guionesCA.getValue() + (Integer)nivelesCA.getValue() + (Integer)spritesCA.getValue() + (Integer)logicCA.getValue() + (Integer)CADLC.getValue() + (Integer)integsCA.getValue();
+            devQtyCA.setText(Integer.toString(s));
+        }
+    }//GEN-LAST:event_logicCAStateChanged
 
     private void NIDLCStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_NIDLCStateChanged
-        
+        if (this.click){
+            if (sumar(guionesNI, nivelesNI, spritesNI, logicNI, NIDLC, integsNI)){
+                down(NIDLC, guionesNI, nivelesNI, spritesNI, logicNI, NIDLC, integsNI);
+            } else {
+                up(NIDLC, guionesNI, nivelesNI, spritesNI, logicNI, NIDLC, integsNI);
+            }
+            int s = (Integer)guionesNI.getValue() + (Integer)nivelesNI.getValue() + (Integer)spritesNI.getValue() + (Integer)logicNI.getValue() + (Integer)NIDLC.getValue() + (Integer)integsNI.getValue();
+            devQtyNI.setText(Integer.toString(s));
+        }
     }//GEN-LAST:event_NIDLCStateChanged
 
     private void CADLCStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_CADLCStateChanged
-        
+        if (this.click){
+            if (sumar(guionesCA, nivelesCA, spritesCA, logicCA, CADLC, integsCA)){
+                down(CADLC, guionesCA, nivelesCA, spritesCA, logicCA, CADLC, integsCA);
+            } else {
+                up(CADLC, guionesCA, nivelesCA, spritesCA, logicCA, CADLC, integsCA);
+            }
+            int s = (Integer)guionesCA.getValue() + (Integer)nivelesCA.getValue() + (Integer)spritesCA.getValue() + (Integer)logicCA.getValue() + (Integer)CADLC.getValue() + (Integer)integsCA.getValue();
+            devQtyCA.setText(Integer.toString(s));
+        }
     }//GEN-LAST:event_CADLCStateChanged
 
     private void integsNIStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_integsNIStateChanged
-        
+        if (this.click){
+            if (sumar(guionesNI, nivelesNI, spritesNI, logicNI, NIDLC, integsNI)){
+                down(integsNI, guionesNI, nivelesNI, spritesNI, logicNI, NIDLC, integsNI);
+            } else {
+                up(integsNI, guionesNI, nivelesNI, spritesNI, logicNI, NIDLC, integsNI);
+            }
+            int s = (Integer)guionesNI.getValue() + (Integer)nivelesNI.getValue() + (Integer)spritesNI.getValue() + (Integer)logicNI.getValue() + (Integer)NIDLC.getValue() + (Integer)integsNI.getValue();
+            devQtyNI.setText(Integer.toString(s));
+        }
     }//GEN-LAST:event_integsNIStateChanged
 
     private void integsCAStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_integsCAStateChanged
-        
+        if (this.click){
+            if (sumar(guionesCA, nivelesCA, spritesCA, logicCA, CADLC, integsCA)){
+                down(integsCA, guionesCA, nivelesCA, spritesCA, logicCA, CADLC, integsCA);
+            } else {
+                up(integsCA, guionesCA, nivelesCA, spritesCA, logicCA, CADLC, integsCA);
+            }
+            int s = (Integer)guionesCA.getValue() + (Integer)nivelesCA.getValue() + (Integer)spritesCA.getValue() + (Integer)logicCA.getValue() + (Integer)CADLC.getValue() + (Integer)integsCA.getValue();
+            devQtyCA.setText(Integer.toString(s));
+        }
     }//GEN-LAST:event_integsCAStateChanged
 
     private void spritesNIStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spritesNIStateChanged
-        
+        if (this.click){
+            if (sumar(guionesNI, nivelesNI, spritesNI, logicNI, NIDLC, integsNI)){
+                down(spritesNI, guionesNI, nivelesNI, spritesNI, logicNI, NIDLC, integsNI);
+            } else {
+                up(spritesNI, guionesNI, nivelesNI, spritesNI, logicNI, NIDLC, integsNI);
+            }
+            int s = (Integer)guionesNI.getValue() + (Integer)nivelesNI.getValue() + (Integer)spritesNI.getValue() + (Integer)logicNI.getValue() + (Integer)NIDLC.getValue() + (Integer)integsNI.getValue();
+            devQtyNI.setText(Integer.toString(s));
+        }
     }//GEN-LAST:event_spritesNIStateChanged
 
     private void spritesCAStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spritesCAStateChanged
-        
+        if (this.click){
+            if (sumar(guionesCA, nivelesCA, spritesCA, logicCA, CADLC, integsCA)){
+                down(spritesCA, guionesCA, nivelesCA, spritesCA, logicCA, CADLC, integsCA);
+            } else {
+                up(spritesCA, guionesCA, nivelesCA, spritesCA, logicCA, CADLC, integsCA);
+            }
+            int s = (Integer)guionesCA.getValue() + (Integer)nivelesCA.getValue() + (Integer)spritesCA.getValue() + (Integer)logicCA.getValue() + (Integer)CADLC.getValue() + (Integer)integsCA.getValue();
+            devQtyCA.setText(Integer.toString(s));
+        }
     }//GEN-LAST:event_spritesCAStateChanged
 
     private void guionesNIStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_guionesNIStateChanged
-        
+        if (this.click){
+            if (sumar(guionesNI, nivelesNI, spritesNI, logicNI, NIDLC, integsNI)){
+                down(guionesNI, guionesNI, nivelesNI, spritesNI, logicNI, NIDLC, integsNI);
+            } else {
+                up(guionesNI, guionesNI, nivelesNI, spritesNI, logicNI, NIDLC, integsNI);
+            }
+            int s = (Integer)guionesNI.getValue() + (Integer)nivelesNI.getValue() + (Integer)spritesNI.getValue() + (Integer)logicNI.getValue() + (Integer)NIDLC.getValue() + (Integer)integsNI.getValue();
+            devQtyNI.setText(Integer.toString(s));
+        }
     }//GEN-LAST:event_guionesNIStateChanged
 
     private void guionesCAStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_guionesCAStateChanged
-        
+        if (this.click){
+            if (sumar(guionesCA, nivelesCA, spritesCA, logicCA, CADLC, integsCA)){
+                down(nivelesCA, guionesCA, nivelesCA, spritesCA, logicCA, CADLC, integsCA);
+            } else {
+                up(nivelesCA, guionesCA, nivelesCA, spritesCA, logicCA, CADLC, integsCA);
+            }
+            int s = (Integer)guionesCA.getValue() + (Integer)nivelesCA.getValue() + (Integer)spritesCA.getValue() + (Integer)logicCA.getValue() + (Integer)CADLC.getValue() + (Integer)integsCA.getValue();
+            devQtyCA.setText(Integer.toString(s));
+        }
     }//GEN-LAST:event_guionesCAStateChanged
 
     private void nivelesNIStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_nivelesNIStateChanged
-        
+        if (this.click){
+            if (sumar(guionesNI, nivelesNI, spritesNI, logicNI, NIDLC, integsNI)){
+                down(nivelesNI, guionesNI, nivelesNI, spritesNI, logicNI, NIDLC, integsNI);
+            } else {
+                up(nivelesNI, guionesNI, nivelesNI, spritesNI, logicNI, NIDLC, integsNI);
+            }
+            int s = (Integer)guionesNI.getValue() + (Integer)nivelesNI.getValue() + (Integer)spritesNI.getValue() + (Integer)logicNI.getValue() + (Integer)NIDLC.getValue() + (Integer)integsNI.getValue();
+            devQtyNI.setText(Integer.toString(s));
+        }
     }//GEN-LAST:event_nivelesNIStateChanged
 
     private void nivelesCAStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_nivelesCAStateChanged
-        
+        if (this.click){
+            if (sumar(guionesCA, nivelesCA, spritesCA, logicCA, CADLC, integsCA)){
+                down(nivelesCA, guionesCA, nivelesCA, spritesCA, logicCA, CADLC, integsCA);
+            } else {
+                up(nivelesCA, guionesCA, nivelesCA, spritesCA, logicCA, CADLC, integsCA);
+            }
+            int s = (Integer)guionesCA.getValue() + (Integer)nivelesCA.getValue() + (Integer)spritesCA.getValue() + (Integer)logicCA.getValue() + (Integer)CADLC.getValue() + (Integer)integsCA.getValue();
+            devQtyCA.setText(Integer.toString(s));
+        }
     }//GEN-LAST:event_nivelesCAStateChanged
 
+    public boolean sumar(javax.swing.JSpinner spinner1, javax.swing.JSpinner spinner2, javax.swing.JSpinner spinner3, javax.swing.JSpinner spinner4, javax.swing.JSpinner spinner5, javax.swing.JSpinner spinner6){
+        int qty = (Integer)spinner1.getValue()+ (Integer)spinner2.getValue() + (Integer)spinner3.getValue() + (Integer)spinner4.getValue() + (Integer)spinner5.getValue() + (Integer)spinner6.getValue();
+        return qty > 12;
+    }
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -673,7 +818,6 @@ public class GUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSpinner CADLC;
-    private javax.swing.JSpinner CALogic;
     private javax.swing.JLabel DLC;
     private javax.swing.JLabel DLCDispon;
     private javax.swing.JLabel DLCDisponCA;
@@ -685,7 +829,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel Est;
     private javax.swing.JLabel Fondo;
     private javax.swing.JSpinner NIDLC;
-    private javax.swing.JSpinner NILogic;
     private javax.swing.JLabel capMax;
     private javax.swing.JLabel conDLC;
     private javax.swing.JLabel deadline;
@@ -718,9 +861,11 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel listosTitle;
     private javax.swing.JLabel listosTitleCA;
     private javax.swing.JLabel listosTitleNI;
+    private javax.swing.JSpinner logicCA;
     private javax.swing.JLabel logicDisponCA;
     private javax.swing.JLabel logicDisponNI;
     private javax.swing.JLabel logicLbl;
+    private javax.swing.JSpinner logicNI;
     private javax.swing.JPanel logicPanel;
     private javax.swing.JPanel logicPanelDispon;
     private javax.swing.JPanel maxCapacidad;

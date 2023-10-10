@@ -7,4 +7,10 @@ package flammiaramos;
 public class Empresa {
     public String name;
     public int diasEntrega, diasRestantes;
+    
+    public Empresa(String name, int dias){
+        this.name = name;
+        this.diasEntrega = dias;
+        this.diasRestantes = dias;
+    }
 }
