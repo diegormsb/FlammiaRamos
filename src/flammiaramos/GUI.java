@@ -11,7 +11,15 @@ public class GUI extends javax.swing.JFrame {
      * Creates new form GUI
      */
     public GUI() {
+        this.setResizable(false);
         initComponents();
+        
+        this.guionPanel.setName("narrativa");
+        this.nivelesPanel.setName("nivel");
+        this.spritesPanel.setName("sprites");
+        this.logicPanel.setName("sistema");
+        this.DLCPanel.setName("DLC");
+        this.integPanel.setName("integradores");
     }
 
     /**

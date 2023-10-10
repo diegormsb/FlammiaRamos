@@ -4,6 +4,16 @@
  */
 package flammiaramos;
 
-public class Director {
-    
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+public class Director extends Thread {
+    private int salary;
+    private long money;
+    private long horaRandom;
+    private long dayDuration;
+    private long esperar;
+    private boolean vigilando;
+    private boolean enviando;
+    private boolean trabajando;
 }
