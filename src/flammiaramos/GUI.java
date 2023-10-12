@@ -21,11 +21,13 @@ public class GUI extends javax.swing.JFrame {
     int CADevLogica;
     int CADevDLCs;
     int CADevIntegs;
-    long costosNI;
-    long costosCA;
+    long costosCapComValue;
+    long costosNintendoValue;
     boolean click = true;
     
     public GUI() {
+        
+        
         this.setResizable(false);
         initComponents();
         
@@ -36,12 +38,18 @@ public class GUI extends javax.swing.JFrame {
         this.DLCPanel.setName("DLC");
         this.integPanel.setName("integradores");
         
+        
         this.NIDevNarrativa = (Integer)guionesNI.getValue();
         this.NIDevNiveles = (Integer)nivelesNI.getValue();
         this.NIDevSprites = (Integer)spritesNI.getValue();
         this.NIDevLogica = (Integer)logicNI.getValue();
         this.NIDevDLCs = (Integer)NIDLC.getValue();
         this.NIDevIntegs = (Integer)integsNI.getValue();
+        
+//        int qtyNI = this.NIDevNarrativa + this.NIDevNiveles + this.NIDevSprites + this.NIDevLogica + this.NIDevDLCs + this.NIDevIntegs;
+//        System.out.println(qtyNI);
+//        this.devQtyNI.setText(Integer.toString(qtyNI));
+//        this.devQtyNI.setText(Integer.toString(qtyNI));
         
         this.CADevNarrativa = (Integer)guionesCA.getValue();
         this.CADevNiveles = (Integer)nivelesCA.getValue();
@@ -50,10 +58,10 @@ public class GUI extends javax.swing.JFrame {
         this.CADevDLCs = (Integer)CADLC.getValue();
         this.CADevIntegs = (Integer)integsCA.getValue();
         
-        this.costosNI = 0;
-        this.costosCA = 0;
+        this.costosNintendoValue = 0;
+        this.costosNintendoValue = 0;
         
-        
+       
     }
 
     /**
@@ -132,7 +140,7 @@ public class GUI extends javax.swing.JFrame {
         guionesMaxN = new javax.swing.JLabel();
         nivelesMaxN = new javax.swing.JLabel();
         DLCMaxN = new javax.swing.JLabel();
-        sitemasMaxN = new javax.swing.JLabel();
+        sistemasMaxN = new javax.swing.JLabel();
         listos = new javax.swing.JPanel();
         listosTitle = new javax.swing.JLabel();
         listosTitleCA = new javax.swing.JLabel();
@@ -146,6 +154,23 @@ public class GUI extends javax.swing.JFrame {
         deadlinePanel = new javax.swing.JPanel();
         deadline = new javax.swing.JLabel();
         deadlineN = new javax.swing.JLabel();
+        iniciarBtn = new javax.swing.JToggleButton();
+        title = new javax.swing.JLabel();
+        title1 = new javax.swing.JLabel();
+        title2 = new javax.swing.JLabel();
+        econPanel = new javax.swing.JPanel();
+        listosTitle1 = new javax.swing.JLabel();
+        econCapCom = new javax.swing.JLabel();
+        econNintendo = new javax.swing.JLabel();
+        ingresoNintendo = new javax.swing.JLabel();
+        costosNintendo = new javax.swing.JLabel();
+        profitNintendo = new javax.swing.JLabel();
+        ingresoCapCom = new javax.swing.JLabel();
+        costosCapCom = new javax.swing.JLabel();
+        profitCapCom = new javax.swing.JLabel();
+        costosTitle = new javax.swing.JLabel();
+        ingresos = new javax.swing.JLabel();
+        profit = new javax.swing.JLabel();
         Fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -157,14 +182,14 @@ public class GUI extends javax.swing.JFrame {
         devCA.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         devCA.setForeground(new java.awt.Color(255, 255, 255));
         devCA.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        devCA.setText("CA");
-        devsPanel.add(devCA, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 30, 20));
+        devCA.setText("CapCom");
+        devsPanel.add(devCA, new org.netbeans.lib.awtextra.AbsoluteConstraints(142, 20, 60, 20));
 
         devNI.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         devNI.setForeground(new java.awt.Color(255, 255, 255));
         devNI.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        devNI.setText("NI");
-        devsPanel.add(devNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 30, 20));
+        devNI.setText("Nintendo");
+        devsPanel.add(devNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 60, 20));
 
         logicPanel.setOpaque(false);
         logicPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -175,7 +200,7 @@ public class GUI extends javax.swing.JFrame {
         logicPanel.add(logicLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 110, 20));
 
         logicNI.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        logicNI.setModel(new javax.swing.SpinnerNumberModel(2, 1, 9, 1));
+        logicNI.setModel(new javax.swing.SpinnerNumberModel(2, 1, 7, 1));
         logicNI.setToolTipText("");
         logicNI.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -185,7 +210,7 @@ public class GUI extends javax.swing.JFrame {
         logicPanel.add(logicNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 50, 20));
 
         logicCA.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        logicCA.setModel(new javax.swing.SpinnerNumberModel(3, 1, 12, 1));
+        logicCA.setModel(new javax.swing.SpinnerNumberModel(2, 1, 7, 1));
         logicCA.setToolTipText("");
         logicCA.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -205,7 +230,7 @@ public class GUI extends javax.swing.JFrame {
         DLCPanel.add(DLC, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 110, 20));
 
         NIDLC.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        NIDLC.setModel(new javax.swing.SpinnerNumberModel(2, 1, 9, 1));
+        NIDLC.setModel(new javax.swing.SpinnerNumberModel(2, 1, 7, 1));
         NIDLC.setToolTipText("");
         NIDLC.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -215,7 +240,7 @@ public class GUI extends javax.swing.JFrame {
         DLCPanel.add(NIDLC, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 50, 20));
 
         CADLC.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        CADLC.setModel(new javax.swing.SpinnerNumberModel(3, 1, 12, 1));
+        CADLC.setModel(new javax.swing.SpinnerNumberModel(2, 1, 7, 1));
         CADLC.setToolTipText("");
         CADLC.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -231,7 +256,7 @@ public class GUI extends javax.swing.JFrame {
 
         devQtyCA.setForeground(new java.awt.Color(255, 255, 255));
         devQtyCA.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        devQtyCA.setText("0");
+        devQtyCA.setText("12");
         devsQtyPanel.add(devQtyCA, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 30, 20));
 
         devQty.setForeground(new java.awt.Color(255, 255, 255));
@@ -241,7 +266,7 @@ public class GUI extends javax.swing.JFrame {
 
         devQtyNI.setForeground(new java.awt.Color(255, 255, 255));
         devQtyNI.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        devQtyNI.setText("0");
+        devQtyNI.setText("12");
         devsQtyPanel.add(devQtyNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 30, 20));
 
         devsPanel.add(devsQtyPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, -1, -1));
@@ -255,7 +280,7 @@ public class GUI extends javax.swing.JFrame {
         integPanel.add(integs, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 110, 20));
 
         integsNI.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        integsNI.setModel(new javax.swing.SpinnerNumberModel(2, 1, 9, 1));
+        integsNI.setModel(new javax.swing.SpinnerNumberModel(2, 1, 7, 1));
         integsNI.setToolTipText("");
         integsNI.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -265,7 +290,7 @@ public class GUI extends javax.swing.JFrame {
         integPanel.add(integsNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 50, 20));
 
         integsCA.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        integsCA.setModel(new javax.swing.SpinnerNumberModel(2, 1, 12, 1));
+        integsCA.setModel(new javax.swing.SpinnerNumberModel(2, 1, 7, 1));
         integsCA.setToolTipText("");
         integsCA.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -285,7 +310,7 @@ public class GUI extends javax.swing.JFrame {
         spritesPanel.add(sprites, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 110, 20));
 
         spritesNI.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        spritesNI.setModel(new javax.swing.SpinnerNumberModel(2, 1, 9, 1));
+        spritesNI.setModel(new javax.swing.SpinnerNumberModel(2, 1, 7, 1));
         spritesNI.setToolTipText("");
         spritesNI.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -295,7 +320,7 @@ public class GUI extends javax.swing.JFrame {
         spritesPanel.add(spritesNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 50, 20));
 
         spritesCA.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        spritesCA.setModel(new javax.swing.SpinnerNumberModel(3, 1, 12, 1));
+        spritesCA.setModel(new javax.swing.SpinnerNumberModel(2, 1, 7, 1));
         spritesCA.setToolTipText("");
         spritesCA.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -315,8 +340,10 @@ public class GUI extends javax.swing.JFrame {
         guionPanel.add(guiones, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 110, 20));
 
         guionesNI.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        guionesNI.setModel(new javax.swing.SpinnerNumberModel(3, 1, 9, 1));
+        guionesNI.setModel(new javax.swing.SpinnerNumberModel(2, 1, 7, 1));
         guionesNI.setToolTipText("");
+        guionesNI.setRequestFocusEnabled(false);
+        guionesNI.setValue(2);
         guionesNI.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 guionesNIStateChanged(evt);
@@ -325,7 +352,7 @@ public class GUI extends javax.swing.JFrame {
         guionPanel.add(guionesNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 50, 20));
 
         guionesCA.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        guionesCA.setModel(new javax.swing.SpinnerNumberModel(3, 1, 12, 1));
+        guionesCA.setModel(new javax.swing.SpinnerNumberModel(2, 1, 7, 1));
         guionesCA.setToolTipText("");
         guionesCA.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -345,7 +372,7 @@ public class GUI extends javax.swing.JFrame {
         nivelesPanel.add(niveles, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 110, 20));
 
         nivelesNI.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        nivelesNI.setModel(new javax.swing.SpinnerNumberModel(3, 1, 9, 1));
+        nivelesNI.setModel(new javax.swing.SpinnerNumberModel(2, 1, 7, 1));
         nivelesNI.setToolTipText("");
         nivelesNI.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -355,7 +382,7 @@ public class GUI extends javax.swing.JFrame {
         nivelesPanel.add(nivelesNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 50, 20));
 
         nivelesCA.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        nivelesCA.setModel(new javax.swing.SpinnerNumberModel(3, 1, 12, 1));
+        nivelesCA.setModel(new javax.swing.SpinnerNumberModel(2, 1, 7, 1));
         nivelesCA.setToolTipText("");
         nivelesCA.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -372,7 +399,7 @@ public class GUI extends javax.swing.JFrame {
         tituloDevs.setText("DEVELOPERS");
         devsPanel.add(tituloDevs, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 20));
 
-        getContentPane().add(devsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 210, 250));
+        getContentPane().add(devsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 210, 250));
 
         disponibilidadPanel.setOpaque(false);
         disponibilidadPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -380,20 +407,20 @@ public class GUI extends javax.swing.JFrame {
         tituloDispon.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         tituloDispon.setForeground(new java.awt.Color(255, 255, 255));
         tituloDispon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        tituloDispon.setText("Disponibilidad");
+        tituloDispon.setText("DISPONIBILIDAD");
         disponibilidadPanel.add(tituloDispon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 160, 20));
 
         disponCA.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         disponCA.setForeground(new java.awt.Color(255, 255, 255));
         disponCA.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        disponCA.setText("CA");
-        disponibilidadPanel.add(disponCA, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 30, 20));
+        disponCA.setText("CapCom");
+        disponibilidadPanel.add(disponCA, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 60, 20));
 
         disponNI.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         disponNI.setForeground(new java.awt.Color(255, 255, 255));
         disponNI.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        disponNI.setText("NI");
-        disponibilidadPanel.add(disponNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 30, 20));
+        disponNI.setText("Nintendo");
+        disponibilidadPanel.add(disponNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 60, 20));
 
         DLCPanDispon.setOpaque(false);
         DLCPanDispon.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -413,7 +440,7 @@ public class GUI extends javax.swing.JFrame {
         DLCDisponCA.setText("0");
         DLCPanDispon.add(DLCDisponCA, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 30, 20));
 
-        disponibilidadPanel.add(DLCPanDispon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, -1, -1));
+        disponibilidadPanel.add(DLCPanDispon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, -1, -1));
 
         nivelesPanelDispon.setOpaque(false);
         nivelesPanelDispon.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -433,7 +460,7 @@ public class GUI extends javax.swing.JFrame {
         nivelesDisponCA.setText("0");
         nivelesPanelDispon.add(nivelesDisponCA, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 30, 20));
 
-        disponibilidadPanel.add(nivelesPanelDispon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, -1, -1));
+        disponibilidadPanel.add(nivelesPanelDispon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, -1, -1));
 
         logicPanelDispon.setOpaque(false);
         logicPanelDispon.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -453,7 +480,7 @@ public class GUI extends javax.swing.JFrame {
         logicDisponCA.setText("0");
         logicPanelDispon.add(logicDisponCA, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 30, 20));
 
-        disponibilidadPanel.add(logicPanelDispon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, -1, -1));
+        disponibilidadPanel.add(logicPanelDispon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, -1, -1));
 
         narrativaPanelDispon.setOpaque(false);
         narrativaPanelDispon.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -473,7 +500,7 @@ public class GUI extends javax.swing.JFrame {
         guionesDisponCA.setText("0");
         narrativaPanelDispon.add(guionesDisponCA, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 30, 20));
 
-        disponibilidadPanel.add(narrativaPanelDispon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1, -1));
+        disponibilidadPanel.add(narrativaPanelDispon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, -1, -1));
 
         spritesPanelDispon.setOpaque(false);
         spritesPanelDispon.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -493,9 +520,9 @@ public class GUI extends javax.swing.JFrame {
         spritesDisponCA.setText("0");
         spritesPanelDispon.add(spritesDisponCA, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 30, 20));
 
-        disponibilidadPanel.add(spritesPanelDispon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, -1, -1));
+        disponibilidadPanel.add(spritesPanelDispon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, -1, -1));
 
-        getContentPane().add(disponibilidadPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 70, 160, 220));
+        getContentPane().add(disponibilidadPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, 160, 220));
 
         maxCapacidad.setOpaque(false);
         maxCapacidad.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -503,7 +530,7 @@ public class GUI extends javax.swing.JFrame {
         capMax.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         capMax.setForeground(new java.awt.Color(255, 255, 255));
         capMax.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        capMax.setText("Capacidad Máxima");
+        capMax.setText("CAPACIDAD MÁXIMA");
         maxCapacidad.add(capMax, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 130, 20));
 
         guionesMax.setForeground(new java.awt.Color(255, 255, 255));
@@ -551,12 +578,12 @@ public class GUI extends javax.swing.JFrame {
         DLCMaxN.setText("0");
         maxCapacidad.add(DLCMaxN, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 30, 20));
 
-        sitemasMaxN.setForeground(new java.awt.Color(255, 255, 255));
-        sitemasMaxN.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        sitemasMaxN.setText("0");
-        maxCapacidad.add(sitemasMaxN, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 30, 20));
+        sistemasMaxN.setForeground(new java.awt.Color(255, 255, 255));
+        sistemasMaxN.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sistemasMaxN.setText("0");
+        maxCapacidad.add(sistemasMaxN, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 30, 20));
 
-        getContentPane().add(maxCapacidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 110, 130, 130));
+        getContentPane().add(maxCapacidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 40, 130, 130));
 
         listos.setOpaque(false);
         listos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -564,20 +591,20 @@ public class GUI extends javax.swing.JFrame {
         listosTitle.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         listosTitle.setForeground(new java.awt.Color(255, 255, 255));
         listosTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        listosTitle.setText("Videojuegos Listos");
+        listosTitle.setText("VIDEOJUEGOS LISTOS");
         listos.add(listosTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 20));
 
         listosTitleCA.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         listosTitleCA.setForeground(new java.awt.Color(255, 255, 255));
         listosTitleCA.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        listosTitleCA.setText("CA");
-        listos.add(listosTitleCA, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 30, 20));
+        listosTitleCA.setText("CapCom");
+        listos.add(listosTitleCA, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 50, 20));
 
         listosTitleNI.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         listosTitleNI.setForeground(new java.awt.Color(255, 255, 255));
         listosTitleNI.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        listosTitleNI.setText("NI");
-        listos.add(listosTitleNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 30, 20));
+        listosTitleNI.setText("Nintendo");
+        listos.add(listosTitleNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, -1, 20));
 
         conDLC.setForeground(new java.awt.Color(255, 255, 255));
         conDLC.setText("Con DLC");
@@ -607,7 +634,7 @@ public class GUI extends javax.swing.JFrame {
         qtyListosEstCA.setText("0");
         listos.add(qtyListosEstCA, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 30, -1));
 
-        getContentPane().add(listos, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 260, -1, -1));
+        getContentPane().add(listos, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 180, -1, -1));
 
         deadlinePanel.setOpaque(false);
         deadlinePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -615,17 +642,111 @@ public class GUI extends javax.swing.JFrame {
         deadline.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         deadline.setForeground(new java.awt.Color(255, 255, 255));
         deadline.setText("Deadline");
-        deadlinePanel.add(deadline, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        deadlinePanel.add(deadline, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, -1, -1));
 
+        deadlineN.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         deadlineN.setForeground(new java.awt.Color(255, 255, 255));
         deadlineN.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         deadlineN.setText("30");
-        deadlinePanel.add(deadlineN, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 30, -1));
+        deadlinePanel.add(deadlineN, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 90, -1));
 
-        getContentPane().add(deadlinePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 0, 140, 40));
+        getContentPane().add(deadlinePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 140, 70));
 
-        Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fotos/Fondo.png"))); // NOI18N
-        getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-70, 0, 900, 500));
+        iniciarBtn.setBackground(new java.awt.Color(255, 102, 51));
+        iniciarBtn.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        iniciarBtn.setText("INICIAR");
+        iniciarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                iniciarBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(iniciarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, -1, -1));
+
+        title.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        title.setForeground(new java.awt.Color(255, 204, 51));
+        title.setText("Venezuela");
+        getContentPane().add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 230, 40));
+
+        title1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        title1.setForeground(new java.awt.Color(255, 204, 51));
+        title1.setText("Desarrollo de");
+        getContentPane().add(title1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 320, 50));
+
+        title2.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        title2.setForeground(new java.awt.Color(255, 204, 51));
+        title2.setText("Videojuegos en");
+        getContentPane().add(title2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 430, 80));
+
+        econPanel.setOpaque(false);
+        econPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        listosTitle1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        listosTitle1.setForeground(new java.awt.Color(255, 255, 255));
+        listosTitle1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        listosTitle1.setText("ASPECTO ECONÓMICO");
+        econPanel.add(listosTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 20));
+
+        econCapCom.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        econCapCom.setForeground(new java.awt.Color(255, 255, 255));
+        econCapCom.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        econCapCom.setText("CapCom");
+        econPanel.add(econCapCom, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 60, 20));
+
+        econNintendo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        econNintendo.setForeground(new java.awt.Color(255, 255, 255));
+        econNintendo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        econNintendo.setText("Nintendo");
+        econPanel.add(econNintendo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 60, 20));
+
+        ingresoNintendo.setForeground(new java.awt.Color(255, 255, 255));
+        ingresoNintendo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ingresoNintendo.setText("0");
+        econPanel.add(ingresoNintendo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 110, -1));
+
+        costosNintendo.setForeground(new java.awt.Color(255, 255, 255));
+        costosNintendo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        costosNintendo.setText("0");
+        econPanel.add(costosNintendo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 110, -1));
+
+        profitNintendo.setForeground(new java.awt.Color(255, 255, 255));
+        profitNintendo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        profitNintendo.setText("0");
+        econPanel.add(profitNintendo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 110, -1));
+
+        ingresoCapCom.setForeground(new java.awt.Color(255, 255, 255));
+        ingresoCapCom.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ingresoCapCom.setText("0");
+        econPanel.add(ingresoCapCom, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, 100, -1));
+
+        costosCapCom.setForeground(new java.awt.Color(255, 255, 255));
+        costosCapCom.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        costosCapCom.setText("0");
+        econPanel.add(costosCapCom, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 100, -1));
+
+        profitCapCom.setForeground(new java.awt.Color(255, 255, 255));
+        profitCapCom.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        profitCapCom.setText("0");
+        econPanel.add(profitCapCom, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 100, -1));
+
+        costosTitle.setForeground(new java.awt.Color(255, 255, 255));
+        costosTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        costosTitle.setText("Costos");
+        econPanel.add(costosTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 270, -1));
+
+        ingresos.setForeground(new java.awt.Color(255, 255, 255));
+        ingresos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ingresos.setText("Ingresos");
+        econPanel.add(ingresos, new org.netbeans.lib.awtextra.AbsoluteConstraints(3, 50, 270, -1));
+
+        profit.setForeground(new java.awt.Color(255, 255, 255));
+        profit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        profit.setText("Utilidad");
+        econPanel.add(profit, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 270, -1));
+
+        getContentPane().add(econPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, 270, 120));
+
+        Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fotos/Fondo (1).png"))); // NOI18N
+        getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1030, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -774,12 +895,178 @@ public class GUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_nivelesCAStateChanged
 
+    private void iniciarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarBtnActionPerformed
+        
+        Nintendo = new Empresa("Nintendo", 500, 30, this.NIDevNarrativa, this.NIDevNiveles, this.NIDevSprites, this.NIDevLogica, this.NIDevDLCs, this.NIDevIntegs, this);
+        CapCom = new Empresa("CapCom", 50, 30,  this.CADevNarrativa, this.CADevNiveles, this.CADevSprites, this.CADevLogica, this.CADevDLCs, this.CADevIntegs, this);
+        
+        this.guionesMaxN.setText(Integer.toString(Nintendo.estudio.maxGuiones));
+        this.nivelesMaxN.setText(Integer.toString(Nintendo.estudio.maxNiveles));
+        this.spritesMaxN.setText(Integer.toString(Nintendo.estudio.maxSprites));
+        this.sistemasMaxN.setText(Integer.toString(Nintendo.estudio.maxSistemas));
+        this.DLCMaxN.setText(Integer.toString(Nintendo.estudio.maxDLC));
+    }//GEN-LAST:event_iniciarBtnActionPerformed
+
     public boolean sumar(javax.swing.JSpinner spinner1, javax.swing.JSpinner spinner2, javax.swing.JSpinner spinner3, javax.swing.JSpinner spinner4, javax.swing.JSpinner spinner5, javax.swing.JSpinner spinner6){
         int qty = (Integer)spinner1.getValue()+ (Integer)spinner2.getValue() + (Integer)spinner3.getValue() + (Integer)spinner4.getValue() + (Integer)spinner5.getValue() + (Integer)spinner6.getValue();
         return qty > 12;
     }
     
+    public void down(javax.swing.JSpinner aCambiar, javax.swing.JSpinner spinner1, javax.swing.JSpinner spinner2, javax.swing.JSpinner spinner3, javax.swing.JSpinner spinner4, javax.swing.JSpinner spinner5, javax.swing.JSpinner spinner6){
+        //System.out.println("Reduciendo ");
+        int mayor = 0;
+        javax.swing.JSpinner mayorSpinner = aCambiar;
+        
+        
+        if (mayor < (Integer)spinner1.getValue() && (!(aCambiar==spinner1))){
+            mayor = (Integer)spinner1.getValue();
+            mayorSpinner = spinner1;
+        }        
+        if (mayor < (Integer)spinner2.getValue() && (!(aCambiar==spinner2))){
+            mayor = (Integer)spinner2.getValue();
+            mayorSpinner = spinner2;
+        }
+        if (mayor < (Integer)spinner3.getValue() && (!(aCambiar==spinner3))){
+            mayor = (Integer)spinner3.getValue();
+            mayorSpinner = spinner3;
+        }
+        if (mayor < (Integer)spinner4.getValue() && (!(aCambiar==spinner4))){
+            mayor = (Integer)spinner4.getValue();
+            mayorSpinner = spinner4;
+        }
+        if (mayor < (Integer)spinner5.getValue() && (!(aCambiar==spinner5))){
+            mayor = (Integer)spinner5.getValue();
+            mayorSpinner = spinner5;
+        }
+        if (mayor < (Integer)spinner6.getValue() && (!(aCambiar==spinner6))){
+            mayor = (Integer)spinner6.getValue();
+            mayorSpinner = spinner6;
+        }
+        
+        Empresa empresa = this.CapCom;
+        if (aCambiar.getAlignmentX()<70){
+            empresa = this.Nintendo;
+        }
+        balanceoRolDevs(mayorSpinner, aCambiar, empresa);
+        
+        this.click = false;
+        mayorSpinner.setValue(mayor-1);
+        this.click = true;
+        
+       
+    }
     
+    public void up(javax.swing.JSpinner aCambiar, javax.swing.JSpinner spinner1, javax.swing.JSpinner spinner2, javax.swing.JSpinner spinner3, javax.swing.JSpinner spinner4, javax.swing.JSpinner spinner5, javax.swing.JSpinner spinner6){
+        //System.out.println("Aumentando ");
+        int menor = 20;
+        javax.swing.JSpinner menorSpinner = aCambiar;
+        
+        if (menor > (Integer)spinner1.getValue() && (!(aCambiar==spinner1))){
+            menor = (Integer)spinner1.getValue();
+            menorSpinner = spinner1;
+        }
+        if (menor > (Integer)spinner2.getValue() && (!(aCambiar==spinner2))){
+            menor = (Integer)spinner2.getValue();
+            menorSpinner = spinner2;
+        }
+        if (menor > (Integer)spinner3.getValue() && (!(aCambiar==spinner3))){
+            menor = (Integer)spinner3.getValue();
+            menorSpinner = spinner3;
+        }
+        if (menor > (Integer)spinner4.getValue() && (!(aCambiar==spinner4))){
+            menor = (Integer)spinner4.getValue();
+            menorSpinner = spinner4;
+        }
+        if (menor > (Integer)spinner5.getValue() && (!(aCambiar==spinner5))){
+            menor = (Integer)spinner5.getValue();
+            menorSpinner = spinner5;
+        }
+        if (menor > (Integer)spinner6.getValue() && (!(aCambiar==spinner6))){
+            menorSpinner = spinner6;
+        }
+        
+        this.click = false;
+        menorSpinner.setValue(menor+1);
+        this.click = true;
+        
+        Empresa empresa = this.CapCom;
+        if (aCambiar.getAlignmentX()<70){
+            empresa = this.Nintendo;
+        }
+        balanceoRolDevs(aCambiar, menorSpinner, empresa);
+        
+    }
+    
+    public void balanceoRolDevs(javax.swing.JSpinner spinnerOrigen, javax.swing.JSpinner spinnerDestino, Empresa empresa){
+        
+        String tipoOrigen = spinnerOrigen.getParent().getName();
+        String tipoDestino = spinnerDestino.getParent().getName();
+        
+        System.out.println("Cambiando trabajador de " + tipoOrigen + " por uno de " + tipoDestino + " en " + empresa.name);
+        
+        for (Dev dev : empresa.devs) {
+            if (dev.rol.equals(tipoOrigen)) {
+                dev.rol = tipoDestino;
+                break;
+                
+            }
+        }
+        
+    }
+    
+    public void updateValues(){
+        
+        this.guionesDisponNI.setText(Integer.toString(Nintendo.estudio.guiones));
+        this.nivelesDisponNI.setText(Integer.toString(Nintendo.estudio.niveles));
+        this.spritesDisponNI.setText(Integer.toString(Nintendo.estudio.sprites));
+        this.logicDisponNI.setText(Integer.toString(Nintendo.estudio.sistemas));
+        this.DLCDisponNI.setText(Integer.toString(Nintendo.estudio.DLCs));
+        
+        this.guionesDisponCA.setText(Integer.toString(CapCom.estudio.guiones));
+        this.nivelesDisponCA.setText(Integer.toString(CapCom.estudio.niveles));
+        this.spritesDisponCA.setText(Integer.toString(CapCom.estudio.sprites));
+        this.logicDisponCA.setText(Integer.toString(CapCom.estudio.sistemas));
+        this.DLCDisponCA.setText(Integer.toString(CapCom.estudio.DLCs));
+ 
+        this.qtyListosEstNI.setText(Integer.toString(Nintendo.estudio.videojuegosE));
+        this.qtyListosDLCNI.setText(Integer.toString(Nintendo.estudio.videojuegosDLC));
+        this.qtyListosEstCA.setText(Integer.toString(CapCom.estudio.videojuegosE));
+        this.qtyListosDLCCA.setText(Integer.toString(CapCom.estudio.videojuegosDLC));
+    }
+    
+    
+    public void actualizarIngreso(long valor, String empresaNombre){
+        if ("Nintendo".equals(empresaNombre)){
+           this.ingresoNintendo.setText(Long.toString(valor));
+        } else {
+            this.ingresoCapCom.setText(Long.toString(valor));
+        }
+    }
+    
+    public void actualizarCostos(){
+        for (Dev dev : this.Nintendo.devs) {
+            costosNintendoValue += dev.wage;
+        }
+        for (Dev dev : this.CapCom.devs) {
+            costosCapComValue += dev.wage;
+        }
+
+        costosNintendoValue += 480; //salario gerente
+        costosCapComValue += 480;
+
+        costosNintendoValue += 720; //salario director    
+        costosCapComValue += 720;
+
+        this.costosCapCom.setText(Long.toString(costosCapComValue));
+        this.costosNintendo.setText(Long.toString(costosNintendoValue));
+    }
+    
+    public void actualizarProfit(){
+        long profitNintendoValue = Integer.valueOf(this.ingresoNintendo.getText())-Integer.valueOf(this.costosNintendo.getText());
+        long profitCapComValue = Integer.valueOf(this.ingresoCapCom.getText())-Integer.valueOf(this.costosCapCom.getText());
+        this.profitNintendo.setText(Long.toString(profitNintendoValue));
+        this.profitNintendo.setText(Long.toString(profitCapComValue));
+    }
     
     /**
      * @param args the command line arguments
@@ -831,6 +1118,9 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JSpinner NIDLC;
     private javax.swing.JLabel capMax;
     private javax.swing.JLabel conDLC;
+    private javax.swing.JLabel costosCapCom;
+    private javax.swing.JLabel costosNintendo;
+    private javax.swing.JLabel costosTitle;
     private javax.swing.JLabel deadline;
     private javax.swing.JLabel deadlineN;
     private javax.swing.JPanel deadlinePanel;
@@ -844,6 +1134,9 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel disponCA;
     private javax.swing.JLabel disponNI;
     private javax.swing.JPanel disponibilidadPanel;
+    private javax.swing.JLabel econCapCom;
+    private javax.swing.JLabel econNintendo;
+    private javax.swing.JPanel econPanel;
     private javax.swing.JPanel guionPanel;
     private javax.swing.JLabel guiones;
     private javax.swing.JSpinner guionesCA;
@@ -853,12 +1146,17 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel guionesMax;
     private javax.swing.JLabel guionesMaxN;
     private javax.swing.JSpinner guionesNI;
+    private javax.swing.JLabel ingresoCapCom;
+    private javax.swing.JLabel ingresoNintendo;
+    private javax.swing.JLabel ingresos;
+    private javax.swing.JToggleButton iniciarBtn;
     private javax.swing.JPanel integPanel;
     private javax.swing.JLabel integs;
     private javax.swing.JSpinner integsCA;
     private javax.swing.JSpinner integsNI;
     private javax.swing.JPanel listos;
     private javax.swing.JLabel listosTitle;
+    private javax.swing.JLabel listosTitle1;
     private javax.swing.JLabel listosTitleCA;
     private javax.swing.JLabel listosTitleNI;
     private javax.swing.JSpinner logicCA;
@@ -880,13 +1178,16 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JSpinner nivelesNI;
     private javax.swing.JPanel nivelesPanel;
     private javax.swing.JPanel nivelesPanelDispon;
+    private javax.swing.JLabel profit;
+    private javax.swing.JLabel profitCapCom;
+    private javax.swing.JLabel profitNintendo;
     private javax.swing.JLabel qtyListosDLCCA;
     private javax.swing.JLabel qtyListosDLCNI;
     private javax.swing.JLabel qtyListosEstCA;
     private javax.swing.JLabel qtyListosEstNI;
     private javax.swing.JLabel sistemasDispon;
     private javax.swing.JLabel sistemasMax;
-    private javax.swing.JLabel sitemasMaxN;
+    private javax.swing.JLabel sistemasMaxN;
     private javax.swing.JLabel sprites;
     private javax.swing.JSpinner spritesCA;
     private javax.swing.JLabel spritesDispon;
@@ -897,6 +1198,9 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JSpinner spritesNI;
     private javax.swing.JPanel spritesPanel;
     private javax.swing.JPanel spritesPanelDispon;
+    private javax.swing.JLabel title;
+    private javax.swing.JLabel title1;
+    private javax.swing.JLabel title2;
     private javax.swing.JLabel tituloDevs;
     private javax.swing.JLabel tituloDispon;
     // End of variables declaration//GEN-END:variables

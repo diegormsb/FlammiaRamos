@@ -6,43 +6,55 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Dev extends Thread {
-    private String text;
-    private String type;
+    public String rol;
     private float prodByDay;
     private float counter;
-    private int wage;
+    public int wage;
     private long savings;
-    private Semaphore mutex;
+    private long dia;
+    public Empresa empresa;
 
-    public Dev(String text, Semaphore mutex, String type, float production, int wage){
-        this.text = text;
-        this.mutex = mutex;
-        this.type = type;
+    public Dev(int wage, String rol, float production, long duracion, Empresa empresa){
+        
+        this.rol = rol;
         this.counter = 0;
         this.prodByDay = production;
         this.savings = 0;
+        this.dia = 1000;
         this.wage = wage;
+        this.empresa = empresa;
     }
 
     @Override
     public void run(){
+        
         while(true){
             try{
-
-                mutex.acquire();
-                savings+=wage;
-                counter += this.prodByDay;
-
-                System.out.println(text + counter + " con:  " + savings + "$");
-                
-                sleep(500);         
-                mutex.release();
-                sleep(1000);
+                sleep(this.dia);
+                this.savings += this.wage;
+                producir();
             }
             catch(InterruptedException ex){
                 Logger.getLogger(Dev.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
-
+    
+    public void producir(){
+        
+        this.counter += this.prodByDay;
+        
+        if((int) this.counter >= 1){
+            try{
+                empresa.mutex.acquire();
+                empresa.estudio.addParts(this.rol, (int) this.counter, empresa.name);
+                empresa.mutex.release();
+            }
+            catch(InterruptedException ex){
+                Logger.getLogger(Dev.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            this.counter = 0;            
+        }
+    }
 }
