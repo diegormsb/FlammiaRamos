@@ -8,8 +8,9 @@ package flammiaramos;
 public class Estudio {
     public int guiones, niveles, sprites, sistemas, DLCs, videojuegosE, videojuegosDLC;
     public int maxGuiones, maxNiveles, maxSprites, maxSistemas, maxDLC;
-    GUI gui;
     public long ingreso;
+    GUI gui;
+    
 
     public Estudio(int maxGuiones, int maxNiveles, int maxSprites, int maxSistemas, int maxDLC, GUI gui){
         this.guiones = 0;

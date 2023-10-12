@@ -4,6 +4,12 @@
  */
 package flammiaramos;
 
+import java.io.File;
+import java.util.Scanner;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 
 public class GUI extends javax.swing.JFrame {
 
@@ -31,6 +37,8 @@ public class GUI extends javax.swing.JFrame {
         this.setResizable(false);
         initComponents();
         
+        
+        
         this.guionPanel.setName("narrativa");
         this.nivelesPanel.setName("nivel");
         this.spritesPanel.setName("sprites");
@@ -46,11 +54,6 @@ public class GUI extends javax.swing.JFrame {
         this.NIDevDLCs = (Integer)NIDLC.getValue();
         this.NIDevIntegs = (Integer)integsNI.getValue();
         
-//        int qtyNI = this.NIDevNarrativa + this.NIDevNiveles + this.NIDevSprites + this.NIDevLogica + this.NIDevDLCs + this.NIDevIntegs;
-//        System.out.println(qtyNI);
-//        this.devQtyNI.setText(Integer.toString(qtyNI));
-//        this.devQtyNI.setText(Integer.toString(qtyNI));
-        
         this.CADevNarrativa = (Integer)guionesCA.getValue();
         this.CADevNiveles = (Integer)nivelesCA.getValue();
         this.CADevSprites = (Integer)spritesCA.getValue();
@@ -61,7 +64,6 @@ public class GUI extends javax.swing.JFrame {
         this.costosNintendoValue = 0;
         this.costosNintendoValue = 0;
         
-       
     }
 
     /**
@@ -154,7 +156,6 @@ public class GUI extends javax.swing.JFrame {
         deadlinePanel = new javax.swing.JPanel();
         deadline = new javax.swing.JLabel();
         deadlineN = new javax.swing.JLabel();
-        iniciarBtn = new javax.swing.JToggleButton();
         title = new javax.swing.JLabel();
         title1 = new javax.swing.JLabel();
         title2 = new javax.swing.JLabel();
@@ -171,6 +172,27 @@ public class GUI extends javax.swing.JFrame {
         costosTitle = new javax.swing.JLabel();
         ingresos = new javax.swing.JLabel();
         profit = new javax.swing.JLabel();
+        PMyDirector = new javax.swing.JPanel();
+        estadoDirectorNintendo = new javax.swing.JLabel();
+        estadoPMNintendo = new javax.swing.JLabel();
+        estadoPMCapCom = new javax.swing.JLabel();
+        estadoDirectorCapCom = new javax.swing.JLabel();
+        CapComPMYDirector = new javax.swing.JLabel();
+        NintendoPMYDirector = new javax.swing.JLabel();
+        directorTitulo = new javax.swing.JLabel();
+        PMTitulo = new javax.swing.JLabel();
+        faltasTitulo = new javax.swing.JLabel();
+        sueldoDescontadoCapCom = new javax.swing.JLabel();
+        qtyFaltasCapCom = new javax.swing.JLabel();
+        qtyFaltasNintendo = new javax.swing.JLabel();
+        sueldoDescontadoNintendo = new javax.swing.JLabel();
+        qtyFaltasTitulo = new javax.swing.JLabel();
+        DirectorPMTitulo = new javax.swing.JLabel();
+        sueldoDescontadoTitulo = new javax.swing.JLabel();
+        inicioBtn = new javax.swing.JButton();
+        subirDatos = new javax.swing.JButton();
+        duracionTitle = new javax.swing.JLabel();
+        duracionValue = new javax.swing.JLabel();
         Fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -641,26 +663,16 @@ public class GUI extends javax.swing.JFrame {
 
         deadline.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         deadline.setForeground(new java.awt.Color(255, 255, 255));
-        deadline.setText("Deadline");
-        deadlinePanel.add(deadline, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, -1, -1));
+        deadline.setText("Deadline (días)");
+        deadlinePanel.add(deadline, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, -1));
 
         deadlineN.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         deadlineN.setForeground(new java.awt.Color(255, 255, 255));
         deadlineN.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         deadlineN.setText("30");
-        deadlinePanel.add(deadlineN, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 90, -1));
+        deadlinePanel.add(deadlineN, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 90, -1));
 
         getContentPane().add(deadlinePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 140, 70));
-
-        iniciarBtn.setBackground(new java.awt.Color(255, 102, 51));
-        iniciarBtn.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        iniciarBtn.setText("INICIAR");
-        iniciarBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                iniciarBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(iniciarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, -1, -1));
 
         title.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         title.setForeground(new java.awt.Color(255, 204, 51));
@@ -745,8 +757,134 @@ public class GUI extends javax.swing.JFrame {
 
         getContentPane().add(econPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, 270, 120));
 
+        PMyDirector.setOpaque(false);
+        PMyDirector.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        estadoDirectorNintendo.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        estadoDirectorNintendo.setForeground(new java.awt.Color(255, 255, 255));
+        estadoDirectorNintendo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        estadoDirectorNintendo.setText("...");
+        PMyDirector.add(estadoDirectorNintendo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 120, -1));
+
+        estadoPMNintendo.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        estadoPMNintendo.setForeground(new java.awt.Color(255, 255, 255));
+        estadoPMNintendo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        estadoPMNintendo.setText("...");
+        PMyDirector.add(estadoPMNintendo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 120, -1));
+
+        estadoPMCapCom.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        estadoPMCapCom.setForeground(new java.awt.Color(255, 255, 255));
+        estadoPMCapCom.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        estadoPMCapCom.setText("...");
+        PMyDirector.add(estadoPMCapCom, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, 120, -1));
+
+        estadoDirectorCapCom.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        estadoDirectorCapCom.setForeground(new java.awt.Color(255, 255, 255));
+        estadoDirectorCapCom.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        estadoDirectorCapCom.setText("...");
+        PMyDirector.add(estadoDirectorCapCom, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, 120, -1));
+
+        CapComPMYDirector.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        CapComPMYDirector.setForeground(new java.awt.Color(255, 255, 255));
+        CapComPMYDirector.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        CapComPMYDirector.setText("CapCom");
+        PMyDirector.add(CapComPMYDirector, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 70, 20));
+
+        NintendoPMYDirector.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        NintendoPMYDirector.setForeground(new java.awt.Color(255, 255, 255));
+        NintendoPMYDirector.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        NintendoPMYDirector.setText("Nintendo");
+        PMyDirector.add(NintendoPMYDirector, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 20));
+
+        directorTitulo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        directorTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        directorTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        directorTitulo.setText("DIRECTOR");
+        PMyDirector.add(directorTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 350, -1));
+
+        PMTitulo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        PMTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        PMTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        PMTitulo.setText("PROJECT MANAGER");
+        PMyDirector.add(PMTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 350, -1));
+
+        faltasTitulo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        faltasTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        faltasTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        faltasTitulo.setText("Faltas al PM");
+        PMyDirector.add(faltasTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 270, -1));
+
+        sueldoDescontadoCapCom.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        sueldoDescontadoCapCom.setForeground(new java.awt.Color(255, 255, 255));
+        sueldoDescontadoCapCom.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        sueldoDescontadoCapCom.setText("...");
+        PMyDirector.add(sueldoDescontadoCapCom, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, 70, -1));
+
+        qtyFaltasCapCom.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        qtyFaltasCapCom.setForeground(new java.awt.Color(255, 255, 255));
+        qtyFaltasCapCom.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        qtyFaltasCapCom.setText("...");
+        PMyDirector.add(qtyFaltasCapCom, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, 20, -1));
+
+        qtyFaltasNintendo.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        qtyFaltasNintendo.setForeground(new java.awt.Color(255, 255, 255));
+        qtyFaltasNintendo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        qtyFaltasNintendo.setText("...");
+        PMyDirector.add(qtyFaltasNintendo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 20, -1));
+
+        sueldoDescontadoNintendo.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        sueldoDescontadoNintendo.setForeground(new java.awt.Color(255, 255, 255));
+        sueldoDescontadoNintendo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        sueldoDescontadoNintendo.setText("...");
+        PMyDirector.add(sueldoDescontadoNintendo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 70, -1));
+
+        qtyFaltasTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        qtyFaltasTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        qtyFaltasTitulo.setText("Cantidad");
+        PMyDirector.add(qtyFaltasTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 270, -1));
+
+        DirectorPMTitulo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        DirectorPMTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        DirectorPMTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        DirectorPMTitulo.setText("PM y Director");
+        PMyDirector.add(DirectorPMTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 350, 20));
+
+        sueldoDescontadoTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        sueldoDescontadoTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sueldoDescontadoTitulo.setText("Sueldo descontado");
+        PMyDirector.add(sueldoDescontadoTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 270, -1));
+
+        getContentPane().add(PMyDirector, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 300, 380, 150));
+
+        inicioBtn.setBackground(new java.awt.Color(255, 102, 51));
+        inicioBtn.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
+        inicioBtn.setText("INICIAR");
+        inicioBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inicioBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(inicioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, -1, 40));
+
+        subirDatos.setText("Subir Datos");
+        subirDatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                subirDatosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(subirDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 470, -1, -1));
+
+        duracionTitle.setForeground(new java.awt.Color(255, 255, 255));
+        duracionTitle.setText("ms/dia");
+        getContentPane().add(duracionTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 40, -1, -1));
+
+        duracionValue.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        duracionValue.setForeground(new java.awt.Color(255, 255, 255));
+        duracionValue.setText("1000");
+        getContentPane().add(duracionValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 30, -1, -1));
+
         Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fotos/Fondo (1).png"))); // NOI18N
-        getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1030, 500));
+        getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -895,18 +1033,69 @@ public class GUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_nivelesCAStateChanged
 
-    private void iniciarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarBtnActionPerformed
-        
-        Nintendo = new Empresa("Nintendo", 500, 30, this.NIDevNarrativa, this.NIDevNiveles, this.NIDevSprites, this.NIDevLogica, this.NIDevDLCs, this.NIDevIntegs, this);
-        CapCom = new Empresa("CapCom", 50, 30,  this.CADevNarrativa, this.CADevNiveles, this.CADevSprites, this.CADevLogica, this.CADevDLCs, this.CADevIntegs, this);
-        
-        this.guionesMaxN.setText(Integer.toString(Nintendo.estudio.maxGuiones));
+    private void inicioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inicioBtnActionPerformed
+    
+        this.subirDatos.setVisible(false);
+        Nintendo = new Empresa("Nintendo", Integer.parseInt(this.duracionValue.getText()), Integer.parseInt(this.deadlineN.getText()), this.NIDevNarrativa, this.NIDevNiveles, this.NIDevSprites, this.NIDevLogica, this.NIDevDLCs, this.NIDevIntegs, this);
+        CapCom = new Empresa("CapCom", Integer.parseInt(this.duracionValue.getText()), Integer.parseInt(this.deadlineN.getText()),  this.CADevNarrativa, this.CADevNiveles, this.CADevSprites, this.CADevLogica, this.CADevDLCs, this.CADevIntegs, this);
+
+        this.guionesMaxN.setText(Integer.toString(this.Nintendo.estudio.maxGuiones));
         this.nivelesMaxN.setText(Integer.toString(Nintendo.estudio.maxNiveles));
         this.spritesMaxN.setText(Integer.toString(Nintendo.estudio.maxSprites));
         this.sistemasMaxN.setText(Integer.toString(Nintendo.estudio.maxSistemas));
         this.DLCMaxN.setText(Integer.toString(Nintendo.estudio.maxDLC));
-    }//GEN-LAST:event_iniciarBtnActionPerformed
+    }//GEN-LAST:event_inicioBtnActionPerformed
 
+    private void subirDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subirDatosActionPerformed
+        this.subirDatos.setVisible(false);
+        StringBuilder db = new StringBuilder();
+        File file = new File(getPath());
+        try {
+            
+            Scanner sc = new Scanner(file);
+            System.out.println("flag");
+            while(sc.hasNext()){
+                String line = sc.nextLine();
+                db.append(line);
+                db.append("\n");
+            }
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, 
+                    "Error al leer el archivo",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE); 
+        }
+        
+        int deadline = 0;
+        int dia = 0;
+        
+        String dbString = db.toString();
+        String[] dbLines = dbString.split("\n");
+        for (String dbLine : dbLines) {
+            String[] dbLineList = dbLine.split(" ");
+            String label = dbLineList[0];
+            String value = dbLineList[1];
+            if (label.contains("Deadline")){
+                deadline = Integer.parseInt(value);
+            }
+            else {dia = Integer.parseInt(value);}
+
+        this.deadlineN.setText(Integer.toString(deadline));
+        this.duracionValue.setText(Integer.toString(dia));
+            
+            
+        }
+    }//GEN-LAST:event_subirDatosActionPerformed
+
+    private String getPath(){
+        JFileChooser selector = new JFileChooser(); 
+        selector.setFileFilter(new FileNameExtensionFilter("texto", "csv"));
+        selector.showOpenDialog(null); 
+        File f = selector.getSelectedFile(); 
+        String path = f.getAbsolutePath();
+        return path;
+    }
+    
     public boolean sumar(javax.swing.JSpinner spinner1, javax.swing.JSpinner spinner2, javax.swing.JSpinner spinner3, javax.swing.JSpinner spinner4, javax.swing.JSpinner spinner5, javax.swing.JSpinner spinner6){
         int qty = (Integer)spinner1.getValue()+ (Integer)spinner2.getValue() + (Integer)spinner3.getValue() + (Integer)spinner4.getValue() + (Integer)spinner5.getValue() + (Integer)spinner6.getValue();
         return qty > 12;
@@ -1065,8 +1254,63 @@ public class GUI extends javax.swing.JFrame {
         long profitNintendoValue = Integer.valueOf(this.ingresoNintendo.getText())-Integer.valueOf(this.costosNintendo.getText());
         long profitCapComValue = Integer.valueOf(this.ingresoCapCom.getText())-Integer.valueOf(this.costosCapCom.getText());
         this.profitNintendo.setText(Long.toString(profitNintendoValue));
-        this.profitNintendo.setText(Long.toString(profitCapComValue));
+        this.profitCapCom.setText(Long.toString(profitCapComValue));
     }
+    
+    public void atrapado(Empresa empresa, int qtyFaltas, int montoDescontado){
+        if ("Nintendo".equals(empresa.name)){
+            this.qtyFaltasNintendo.setText(Integer.toString(qtyFaltas));
+            this.sueldoDescontadoNintendo.setText(Integer.toString(montoDescontado));
+        }else {
+            this.qtyFaltasCapCom.setText(Integer.toString(qtyFaltas));
+            this.sueldoDescontadoCapCom.setText(Integer.toString(montoDescontado));
+        }
+    }
+    
+    public void estadoPM(boolean AmongUs, Empresa empresa){
+        if (AmongUs){
+            if ("Nintendo".equals(empresa.name)){
+                this.estadoPMNintendo.setText("viendo AmongUs");
+            } else {
+                this.estadoPMCapCom.setText("viendo AmongUs");
+            } 
+        }else {
+            if ("Nintendo".equals(empresa.name)){
+                this.estadoPMNintendo.setText("trabajando");
+            } else {
+                this.estadoPMCapCom.setText("trabajando");
+            }
+        }
+    }
+    
+    public void actualizarDeadline(int n){
+        this.deadlineN.setText(Integer.toString(n));
+    }
+    
+    public void estadoDirector(boolean vigila, boolean administrativo, boolean distribuye, Empresa empresa){
+        if ("Nintendo".equals(empresa.name)){
+            if (vigila){
+                this.estadoDirectorNintendo.setText("vigila");
+            }
+            if (administrativo){
+                this.estadoDirectorNintendo.setText("administrativo");
+            }
+            if (distribuye){
+                this.estadoDirectorNintendo.setText("distribuye");
+            }
+        } else {
+            if (vigila){
+                this.estadoDirectorCapCom.setText("vigila");
+            }
+            if (administrativo){
+                this.estadoDirectorCapCom.setText("administrativo");
+            }
+            if (distribuye){
+                this.estadoDirectorCapCom.setText("distribuye");
+            }
+        }
+    }
+    
     
     /**
      * @param args the command line arguments
@@ -1105,6 +1349,7 @@ public class GUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSpinner CADLC;
+    private javax.swing.JLabel CapComPMYDirector;
     private javax.swing.JLabel DLC;
     private javax.swing.JLabel DLCDispon;
     private javax.swing.JLabel DLCDisponCA;
@@ -1113,9 +1358,13 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel DLCMaxN;
     private javax.swing.JPanel DLCPanDispon;
     private javax.swing.JPanel DLCPanel;
+    private javax.swing.JLabel DirectorPMTitulo;
     private javax.swing.JLabel Est;
     private javax.swing.JLabel Fondo;
     private javax.swing.JSpinner NIDLC;
+    private javax.swing.JLabel NintendoPMYDirector;
+    private javax.swing.JLabel PMTitulo;
+    private javax.swing.JPanel PMyDirector;
     private javax.swing.JLabel capMax;
     private javax.swing.JLabel conDLC;
     private javax.swing.JLabel costosCapCom;
@@ -1131,12 +1380,20 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel devQtyNI;
     private javax.swing.JPanel devsPanel;
     private javax.swing.JPanel devsQtyPanel;
+    private javax.swing.JLabel directorTitulo;
     private javax.swing.JLabel disponCA;
     private javax.swing.JLabel disponNI;
     private javax.swing.JPanel disponibilidadPanel;
+    private javax.swing.JLabel duracionTitle;
+    private javax.swing.JLabel duracionValue;
     private javax.swing.JLabel econCapCom;
     private javax.swing.JLabel econNintendo;
     private javax.swing.JPanel econPanel;
+    private javax.swing.JLabel estadoDirectorCapCom;
+    private javax.swing.JLabel estadoDirectorNintendo;
+    private javax.swing.JLabel estadoPMCapCom;
+    private javax.swing.JLabel estadoPMNintendo;
+    private javax.swing.JLabel faltasTitulo;
     private javax.swing.JPanel guionPanel;
     private javax.swing.JLabel guiones;
     private javax.swing.JSpinner guionesCA;
@@ -1149,7 +1406,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel ingresoCapCom;
     private javax.swing.JLabel ingresoNintendo;
     private javax.swing.JLabel ingresos;
-    private javax.swing.JToggleButton iniciarBtn;
+    private javax.swing.JButton inicioBtn;
     private javax.swing.JPanel integPanel;
     private javax.swing.JLabel integs;
     private javax.swing.JSpinner integsCA;
@@ -1181,6 +1438,9 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel profit;
     private javax.swing.JLabel profitCapCom;
     private javax.swing.JLabel profitNintendo;
+    private javax.swing.JLabel qtyFaltasCapCom;
+    private javax.swing.JLabel qtyFaltasNintendo;
+    private javax.swing.JLabel qtyFaltasTitulo;
     private javax.swing.JLabel qtyListosDLCCA;
     private javax.swing.JLabel qtyListosDLCNI;
     private javax.swing.JLabel qtyListosEstCA;
@@ -1198,6 +1458,10 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JSpinner spritesNI;
     private javax.swing.JPanel spritesPanel;
     private javax.swing.JPanel spritesPanelDispon;
+    private javax.swing.JButton subirDatos;
+    private javax.swing.JLabel sueldoDescontadoCapCom;
+    private javax.swing.JLabel sueldoDescontadoNintendo;
+    private javax.swing.JLabel sueldoDescontadoTitulo;
     private javax.swing.JLabel title;
     private javax.swing.JLabel title1;
     private javax.swing.JLabel title2;

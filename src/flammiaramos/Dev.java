@@ -20,7 +20,7 @@ public class Dev extends Thread {
         this.counter = 0;
         this.prodByDay = production;
         this.savings = 0;
-        this.dia = 1000;
+        this.dia = duracion;
         this.wage = wage;
         this.empresa = empresa;
     }
